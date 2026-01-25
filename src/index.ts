@@ -2,6 +2,9 @@ import { Command } from "commander";
 import { moduleDoctor } from "./commands/module/doctor";
 import { moduleAdd } from "./commands/module/add";
 import { moduleRemove } from "./commands/module/remove";
+import { authLogin } from "./commands/auth/login";
+import { authLogout } from "./commands/auth/logout";
+import { authWhoami } from "./commands/auth/whoami";
 
 export const main = () => {
   const program = new Command();
@@ -11,6 +14,9 @@ export const main = () => {
     .description("Kaven CLI - The official command line tool for Kaven")
     .version("0.1.0-alpha.0");
 
+  /**
+   * Modules Group
+   */
   const moduleCommand = program
     .command("module")
     .description("Module management commands");
@@ -30,6 +36,28 @@ export const main = () => {
     .command("remove <name>")
     .description("Remove a module from the project")
     .action((name) => moduleRemove(name));
+
+  /**
+   * Auth Group
+   */
+  const authCommand = program
+    .command("auth")
+    .description("Authentication commands");
+
+  authCommand
+    .command("login")
+    .description("Log in to Kaven Cloud")
+    .action(() => authLogin());
+
+  authCommand
+    .command("logout")
+    .description("Log out from Kaven Cloud")
+    .action(() => authLogout());
+
+  authCommand
+    .command("whoami")
+    .description("Check current login status")
+    .action(() => authWhoami());
 
   program.parse();
 };
