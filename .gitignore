@@ -95,3 +95,6 @@ temp/
 # ==============================================================================
 # Note: ~/.kaven/ is in HOME directory, not in repo
 # This is here for reference only
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.agent/rules/snyk_rules.md
